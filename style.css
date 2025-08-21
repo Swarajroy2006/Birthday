@@ -36,15 +36,7 @@
     margin: 0 auto;
     position: relative;
   }
-  #nav {
-    width: 100%;
-    padding: 15px 0px;
-    justify-items: space-between;
-    align-items: center;
-  }
-  #nav img {
-    height: 80px;
-  }
+
   #nleft {
     display: flex;
     align-items: center;
