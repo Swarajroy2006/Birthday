@@ -5,34 +5,9 @@ function playMusic() {
 }
 window.addEventListener('DOMContentLoaded', function() {
   playMusic();
+  confetti();
+  _slideSatu();
 });
-document.body.addEventListener('click', playMusic, { once: true });
-const content = document.getElementById('content');
-const footer = document.getElementsByTagName('footer')[0];
-const timer = document.getElementById('timer');
-
-const second = 1000,
-  minute = second * 60,
-  hour = minute * 60,
-  day = hour * 24;
-let countDown = new Date('Oct 22, 2023 00:00:00').getTime(),
-  x = setInterval(function () {
-    let now = new Date().getTime(),
-      distance = countDown - now;
-    // document.getElementById('days').innerText = Math.floor(distance / (day)),
-    document.getElementById('hours').innerText = Math.floor(distance / (hour)),
-      document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-      document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
-
-    if (distance < 0) {
-
-      timer.classList.add('d-none');
-      confetti();
-      clearInterval(x);
-      _slideSatu();
-    }
-
-  }, second)
 
 const _slideSatu = function () {
   const tap = document.getElementById('tap');
@@ -40,9 +15,9 @@ const _slideSatu = function () {
   slideSatu.classList.remove('d-none');
   setTimeout(function () {
     tap.classList.remove('d-none');
-    document.body.addEventListener('click', function () {
+    setTimeout(function () {
       _slideDua();
-    })
+    }, 4000);
   }, 7000);
 };
 
@@ -62,7 +37,7 @@ const _slideDua = function () {
   slideDua.classList.remove('d-none');
   setTimeout(function () {
     tap.classList.remove('d-none');
-    document.body.addEventListener('click', function () {
+    setTimeout(function () {
       slideDua.classList.replace('animate__zoomInDown', 'animate__fadeOutLeft');
       slideDua.classList.remove('animate__delay-2s', 'animate__slow');
       tap.classList.add('d-none');
@@ -70,7 +45,7 @@ const _slideDua = function () {
         slideDua.remove();
         _slideTiga();
       }, 1000);
-    })
+    }, 6000);
   }, 40000);
 };
 
@@ -81,7 +56,7 @@ const _slideTiga = function () {
   slideTiga.classList.remove('d-none');
   setTimeout(function () {
     tap.classList.remove('d-none');
-    document.body.addEventListener('click', function () {
+    setTimeout(function () {
       slideTiga.classList.remove('animate__delay-2s', 'animate__slow');
       slideTiga.classList.replace('animate__fadeInRight', 'animate__fadeOut');
       tap.remove();
@@ -89,7 +64,7 @@ const _slideTiga = function () {
         slideTiga.remove();
         _slideEmpat();
       }, 1000);
-    })
+    }, 6000);
   }, 43000);
 }
 
@@ -103,25 +78,17 @@ function getRandomPosition(element) {
 
 const _slideEmpat = function () {
   const slideEmpat = document.getElementById('slideEmpat');
-  const btn = document.getElementsByTagName('button');
   slideEmpat.classList.remove('d-none');
-
-  btn[0].addEventListener('click', function () {
-    var xy = getRandomPosition(slideEmpat);
-    slideEmpat.style.top = xy[0] + 'px';
-    // slideEmpat.style.left = xy[1] + 'px';
-  });
-
-  btn[1].addEventListener('click', function () {
+  setTimeout(function () {
     slideEmpat.classList.replace('animate__fadeInDown', 'animate__bounceOut');
     slideEmpat.classList.remove('animate__delay-2s');
     setTimeout(function () {
-      slideEmpat.remove()
+      slideEmpat.remove();
       setTimeout(() => {
         _slideLima();
       }, 500);
     }, 1000);
-  })
+  }, 5000);
 };
 
 const _slideLima = function () {
@@ -141,15 +108,9 @@ const _slideLima = function () {
       trims.remove();
       setTimeout(() => {
         slideLima.remove();
-        _slideEnam();
       }, 1000);
     }, 6000);
   });
-};
-
-const _slideEnam = function () {
-  const slideEnam = document.getElementById('slideEnam');
-  slideEnam.classList.remove('d-none');
 };
 
 
