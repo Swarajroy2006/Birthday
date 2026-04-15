@@ -2,9 +2,12 @@
 function playMusic() {
   const music = document.getElementById('background-music');
   music.loop = true;
+  music.preload = 'auto';
+  music.load();
   music.play().catch(() => {});
 }
 playMusic();
+window.addEventListener('pageshow', playMusic);
 window.addEventListener('DOMContentLoaded', function() {
   confetti();
   _slideSatu();
@@ -18,8 +21,8 @@ const _slideSatu = function () {
     tap.classList.remove('d-none');
     setTimeout(function () {
       _slideDua();
-    }, 1500);
-  }, 1500);
+    }, 3000);
+  }, 2500);
 };
 
 const _slideDua = function () {
@@ -46,8 +49,8 @@ const _slideDua = function () {
         slideDua.remove();
         _slideTiga();
       }, 500);
-    }, 1500);
-  }, 10000);
+    }, 5000);
+  }, 25000);
 };
 
 const _slideTiga = function () {
@@ -65,8 +68,8 @@ const _slideTiga = function () {
         slideTiga.remove();
         _slideEmpat();
       }, 500);
-    }, 1500);
-  }, 12000);
+    }, 5000);
+  }, 20000);
 }
 
 function getRandomPosition(element) {
