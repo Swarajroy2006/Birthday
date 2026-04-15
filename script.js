@@ -1,14 +1,59 @@
-// Fungsi untuk memulai musik
+const music = document.getElementById('background-music');
+const soundToggle = document.getElementById('sound-toggle');
+
+function showSoundButton() {
+  if (!soundToggle) return;
+  soundToggle.textContent = 'Unmute sound';
+  soundToggle.classList.remove('d-none');
+}
+
+function hideSoundButton() {
+  if (!soundToggle) return;
+  soundToggle.classList.add('d-none');
+}
+
+// Try autoplay first; if blocked on mobile, show a manual unmute button.
 function playMusic() {
-  const music = document.getElementById('background-music');
+  if (!music) return Promise.resolve();
   music.loop = true;
   music.preload = 'auto';
   music.load();
-  music.play().catch(() => {});
+  music.muted = false;
+  return music.play()
+    .then(() => {
+      hideSoundButton();
+    })
+    .catch(() => {
+      showSoundButton();
+    });
 }
+
+function toggleSound() {
+  if (!music) return;
+  if (music.paused || music.muted) {
+    music.muted = false;
+    music.play().then(() => {
+      hideSoundButton();
+    }).catch(() => {
+      showSoundButton();
+    });
+    return;
+  }
+
+  music.muted = true;
+  if (soundToggle) {
+    soundToggle.textContent = 'Unmute sound';
+    soundToggle.classList.remove('d-none');
+  }
+}
+
 playMusic();
 window.addEventListener('pageshow', playMusic);
 window.addEventListener('DOMContentLoaded', function() {
+  if (soundToggle) {
+    soundToggle.addEventListener('click', toggleSound);
+  }
+
   confetti();
   _slideSatu();
 });
