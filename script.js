@@ -1,10 +1,11 @@
 // Fungsi untuk memulai musik
 function playMusic() {
   const music = document.getElementById('background-music');
-  music.play();
+  music.loop = true;
+  music.play().catch(() => {});
 }
+playMusic();
 window.addEventListener('DOMContentLoaded', function() {
-  playMusic();
   confetti();
   _slideSatu();
 });
@@ -17,8 +18,8 @@ const _slideSatu = function () {
     tap.classList.remove('d-none');
     setTimeout(function () {
       _slideDua();
-    }, 4000);
-  }, 7000);
+    }, 1500);
+  }, 1500);
 };
 
 const _slideDua = function () {
@@ -31,8 +32,8 @@ const _slideDua = function () {
     tap.classList.add('d-none');
     setTimeout(function () {
       slideSatu.classList.add('d-none');
-    }, 1000);
-  }, 1000);
+    }, 500);
+  }, 500);
 
   slideDua.classList.remove('d-none');
   setTimeout(function () {
@@ -44,9 +45,9 @@ const _slideDua = function () {
       setTimeout(function () {
         slideDua.remove();
         _slideTiga();
-      }, 1000);
-    }, 6000);
-  }, 40000);
+      }, 500);
+    }, 1500);
+  }, 10000);
 };
 
 const _slideTiga = function () {
@@ -63,9 +64,9 @@ const _slideTiga = function () {
       setTimeout(function () {
         slideTiga.remove();
         _slideEmpat();
-      }, 1000);
-    }, 6000);
-  }, 43000);
+      }, 500);
+    }, 1500);
+  }, 12000);
 }
 
 function getRandomPosition(element) {
@@ -86,9 +87,9 @@ const _slideEmpat = function () {
       slideEmpat.remove();
       setTimeout(() => {
         _slideLima();
-      }, 500);
-    }, 1000);
-  }, 5000);
+      }, 400);
+    }, 800);
+  }, 3000);
 };
 
 const _slideLima = function () {
@@ -98,7 +99,7 @@ const _slideLima = function () {
 
   setTimeout(() => {
     trims.classList.remove('d-none');
-  }, 1000);
+  }, 600);
 
   slideLima.addEventListener('animationend', () => {
     slideLima.classList.add('animate__delay-3s')
@@ -108,30 +109,30 @@ const _slideLima = function () {
       trims.remove();
       setTimeout(() => {
         slideLima.remove();
-      }, 1000);
-    }, 6000);
+      }, 500);
+    }, 3000);
   });
 };
 
 
 new TypeIt("#teks1", {
-  strings: ["Hari ini, saya langitkan semua doa terbaik saya untuk kamu.", "Semoga hal-hal yang membuat kamu runtuh turut menjadi alasan kamu untuk tetap tumbuh.", "Semoga dunia senantiasa menjaga kamu dimanapun kamu berada.", "Semoga hari-hari kamu selalu diiringi cinta yang tak pernah ada batasnya." , "Semoga setiap langkahmu dimudahkan hingga tercapai apa yang kamu inginkan."],
-  startDelay: 4000,
+  strings: ["It feels strange how time passes, but some people never change in our hearts… and you are one of them.", "My Apu, my old childhood friend - you’ll always have a special place in my life.", "I don’t say this often, but I truly miss those simple days we had.", "Even today, whenever I think of you, I remember your care… and yes, your cooking too - I still love the food made by you, it always had that warmth in it."],
+  startDelay: 1000,
   speed: 75,
   waitUntilVisible: true
 }).go();
 
 new TypeIt("#teks2", {
-  strings: ["Dengan ataupun tanpaku, semoga semesta selalu membahagiakan kamu bagimanapun caranya.", " ", "barakallah fi umrik, terima kasih sudah bertahan sampai sejauh ini.", " ", "- Wish all you the best"],
-  startDelay: 2000,
+  strings: ["I just hope life gives you all the happiness you deserve.", "Stay happy, stay strong, and never lose that beautiful heart of yours.", "Happy Birthday once again… always rooting for you, silently. 🎂✨"],
+  startDelay: 800,
   speed: 75,
   waitUntilVisible: true
 }).go();
 
 
 new TypeIt("#trims", {
-  strings: ["Terimakasih."],
-  startDelay: 2000,
+  strings: ["Happy Birthday Eshu… 💛"],
+  startDelay: 800,
   speed: 150,
   loop: false,
   waitUntilVisible: true,
